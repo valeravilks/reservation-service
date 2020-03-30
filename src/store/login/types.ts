@@ -3,17 +3,17 @@ export interface IState {
     age: number
 }
 
-export const ADD = 'ADD';
-export const DEL = 'DEL';
+export const SING_IN = 'SING_IN';
+export const SING_UP = 'SING_UP';
 
-interface AddName {
-    type: typeof ADD,
+interface SingIn {
+    type: typeof SING_IN,
     name: string
 }
 
 interface DelAge {
-    type: typeof DEL,
+    type: typeof SING_UP,
     age: string
 }
 
-export type LoginActionType = AddName | DelAge;
+export type LoginActionType = SingIn | DelAge;

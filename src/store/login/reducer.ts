@@ -1,4 +1,4 @@
-import { IState, ADD, DEL, LoginActionType } from './types';
+import { IState, SING_UP, SING_IN, LoginActionType } from './types';
 
 const initialState: IState = {
     name: 'first',
@@ -7,9 +7,9 @@ const initialState: IState = {
 
 export default function(state:IState = initialState, action: LoginActionType): IState{
     switch(action.type){
-        case ADD:
+        case SING_IN:
             return {...state, name: 'ddd'};
-        case DEL:
+        case SING_UP:
             return state;
         default:
             return state;
