@@ -13,6 +13,7 @@ ReactDOM.render(
         <FirebaseContext.Provider value={new Firebase()}>
             <React.StrictMode>
                 <Login />
+                {/*<App />*/}
             </React.StrictMode>
         </FirebaseContext.Provider>
     </Provider>,

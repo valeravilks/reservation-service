@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { connect } from 'react-redux';
+import {singIn} from '../../store/login/action';
 
 function Copyright() {
     return (
@@ -46,8 +48,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SignIn() {
+const SignIn = (props:any) => {
     const classes = useStyles();
+
+    const singToIn = (event:any) => {
+        event.preventDefault();
+        props.singIn('valeravilks@gmail.com', 123456);
+    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -92,6 +99,7 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={(e:any) => singToIn(e)}
                     >
                         Sign In
                     </Button>
@@ -114,4 +122,12 @@ export default function SignIn() {
             </Box>
         </Container>
     );
-}
+};
+
+const mapDispatchToProps = (dispatch:any) => ({
+    singIn: (email:any, pass:any) => {
+        dispatch(singIn(email, pass))
+    }
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);

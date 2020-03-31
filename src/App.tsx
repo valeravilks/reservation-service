@@ -29,5 +29,5 @@ function App(props:any) {
 export default connect(state => ({
   state
 }), dispatch => ({
-  add: () => dispatch({type: 'ADD', name: 'sdfsdf'})
+  add: () => dispatch({type: 'INCREMENT_ASYNC'})
 }))(App);

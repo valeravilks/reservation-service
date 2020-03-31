@@ -15,7 +15,7 @@ export default function(state:IState = initialState, action: LoginActionType): I
             return state;
     }
 }
-
-function SignIn(){
-
-}
+//
+// function SignIn(){
+//
+// }
