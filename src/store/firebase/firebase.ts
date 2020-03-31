@@ -16,4 +16,11 @@ class Firebase {
     }
 }
 
+export const singIn3 = async () => {
+    return firebase
+        .auth()
+        .createUserWithEmailAndPassword('valeravssilks@gmsail.com', '123456');
+};
+
+
 export default Firebase;

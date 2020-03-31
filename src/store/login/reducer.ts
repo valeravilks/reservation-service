@@ -8,14 +8,10 @@ const initialState: IState = {
 export default function(state:IState = initialState, action: LoginActionType): IState{
     switch(action.type){
         case SING_IN:
-            return {...state, name: 'ddd'};
+            return {...state, name: action.name};
         case SING_UP:
             return state;
         default:
             return state;
     }
 }
-//
-// function SignIn(){
-//
-// }

@@ -1,10 +1,18 @@
 import { takeEvery, put } from 'redux-saga/effects';
+import { singIn3 } from "../firebase/firebase";
 
-const delay = (ms:any) => new Promise(res => setTimeout(res, ms))
+function* SingIn(props:any){
+    // yield delay(5000);
+    console.log(11111);
+    yield put({type: "SING_IN", name: '123'});
+    try{
+        yield singIn3();
+        console.log('Ehf');
+    } catch (e) {
+        console.log(e)
+    }
 
-export function* SingIn(){
-    yield delay(1000);
-    yield put({type: "SING_IN", name: 'sdf'});
+
 }
 
 export function* watchIncrementAsync() {

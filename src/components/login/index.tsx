@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
-import {singIn} from '../../store/login/action';
+import { singIn2 } from '../../store/login/action';
 
 function Copyright() {
     return (
@@ -53,7 +53,7 @@ const SignIn = (props:any) => {
 
     const singToIn = (event:any) => {
         event.preventDefault();
-        props.singIn('valeravilks@gmail.com', 123456);
+        props.singInn('valeravilks@gmail.com', 123456);
     };
 
     return (
@@ -125,8 +125,8 @@ const SignIn = (props:any) => {
 };
 
 const mapDispatchToProps = (dispatch:any) => ({
-    singIn: (email:any, pass:any) => {
-        dispatch(singIn(email, pass))
+    singInn: (email:any, pass:any) => {
+        dispatch(singIn2(email, pass))
     }
 });
 
