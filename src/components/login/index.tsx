@@ -50,14 +50,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = (props:any) => {
+
     const classes = useStyles();
 
     const emailRef:any = React.createRef();
+    const passRef:any = React.createRef();
 
     const singIn = (event:any) => {
-        console.log(emailRef.current.value);
         event.preventDefault();
-        props.singIn('valeravilks@gmail.com', 123456);
+        props.singIn(emailRef.current.value, passRef.current.value);
     };
 
     return (
@@ -72,6 +73,7 @@ const SignIn = (props:any) => {
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
+                        type="email"
                         variant="outlined"
                         margin="normal"
                         required
@@ -81,7 +83,7 @@ const SignIn = (props:any) => {
                         name="email"
                         autoComplete="email"
                         autoFocus
-                        ref={emailRef}
+                        inputRef={emailRef}
                     />
                     <TextField
                         variant="outlined"
@@ -93,6 +95,7 @@ const SignIn = (props:any) => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        inputRef={passRef}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -108,27 +111,18 @@ const SignIn = (props:any) => {
                     >
                         Sign In
                     </Button>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Sign Out
-                    </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
+                    {/*<Grid container>*/}
+                    {/*    <Grid item xs>*/}
+                    {/*        <Link href="#" variant="body2">*/}
+                    {/*            Forgot password?*/}
+                    {/*        </Link>*/}
+                    {/*    </Grid>*/}
+                    {/*    <Grid item>*/}
+                    {/*        <Link href="#" variant="body2">*/}
+                    {/*            {"Don't have an account? Sign Up"}*/}
+                    {/*        </Link>*/}
+                    {/*    </Grid>*/}
+                    {/*</Grid>*/}
                 </form>
             </div>
             <Box mt={8}>
