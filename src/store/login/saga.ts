@@ -1,20 +1,17 @@
 import { takeEvery, put } from 'redux-saga/effects';
-import { singIn3 } from "../firebase/firebase";
+import Firebase from "../firebase";
+import {SING_IN_EMAIL} from "./types";
 
-function* SingIn(props:any){
-    // yield delay(5000);
-    console.log(11111);
+function* SingInBase(props:any){
     yield put({type: "SING_IN", name: '123'});
     try{
-        yield singIn3();
-        console.log('Ehf');
+        yield Firebase.singIn(props.email, props.pass);
+        console.log('SingIn');
     } catch (e) {
         console.log(e)
     }
-
-
 }
 
 export function* watchIncrementAsync() {
-    yield takeEvery('INCREMENT_ASYNC', SingIn)
+    yield takeEvery(SING_IN_EMAIL, SingInBase)
 }

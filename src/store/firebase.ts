@@ -14,13 +14,19 @@ class Firebase {
     constructor() {
         firebase.initializeApp(firebaseConfig);
     }
+
+    singIn = async (email: string, pass: string) => (
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, pass)
+    );
+
+    singOut = async () => (
+        firebase
+            .auth()
+            .signOut()
+    )
 }
 
-export const singIn3 = async () => {
-    return firebase
-        .auth()
-        .createUserWithEmailAndPassword('valeravssilks@gmsail.com', '123456');
-};
 
-
-export default Firebase;
+export default new Firebase();

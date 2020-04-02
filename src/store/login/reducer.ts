@@ -1,14 +1,14 @@
-import { IState, SING_UP, SING_IN, LoginActionType } from './types';
+import {IState, SING_UP, LoginActionType, SING_IN_EMAIL} from './types';
 
 const initialState: IState = {
-    name: 'first',
+    email: '',
     age: 22
 };
 
 export default function(state:IState = initialState, action: LoginActionType): IState{
     switch(action.type){
-        case SING_IN:
-            return {...state, name: action.name};
+        case SING_IN_EMAIL:
+            return {...state, email: action.email};
         case SING_UP:
             return state;
         default:

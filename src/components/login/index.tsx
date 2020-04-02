@@ -13,7 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
-import { singIn2 } from '../../store/login/action';
+import { singInAction } from "../../store/login/action";
+
 
 function Copyright() {
     return (
@@ -51,9 +52,12 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = (props:any) => {
     const classes = useStyles();
 
-    const singToIn = (event:any) => {
+    const emailRef:any = React.createRef();
+
+    const singIn = (event:any) => {
+        console.log(emailRef.current.value);
         event.preventDefault();
-        props.singInn('valeravilks@gmail.com', 123456);
+        props.singIn('valeravilks@gmail.com', 123456);
     };
 
     return (
@@ -64,7 +68,7 @@ const SignIn = (props:any) => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Sign in {props.email}
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
@@ -77,6 +81,7 @@ const SignIn = (props:any) => {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        ref={emailRef}
                     />
                     <TextField
                         variant="outlined"
@@ -99,9 +104,18 @@ const SignIn = (props:any) => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={(e:any) => singToIn(e)}
+                        onClick={(e:any) => singIn(e)}
                     >
                         Sign In
+                    </Button>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >
+                        Sign Out
                     </Button>
                     <Grid container>
                         <Grid item xs>
@@ -124,10 +138,15 @@ const SignIn = (props:any) => {
     );
 };
 
+const mapStateToProps = (state: any) => ({
+   email: state.login.email
+});
+
+
 const mapDispatchToProps = (dispatch:any) => ({
-    singInn: (email:any, pass:any) => {
-        dispatch(singIn2(email, pass))
+    singIn: (email:any, pass:any) => {
+        dispatch(singInAction(email, pass))
     }
 });
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

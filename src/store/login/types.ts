@@ -1,14 +1,14 @@
 export interface IState {
-    name: string,
+    email: string,
     age: number
 }
 
-export const SING_IN = 'SING_IN';
+export const SING_IN_EMAIL = 'SING_IN_EMAIL';
 export const SING_UP = 'SING_UP';
 
-interface SingIn {
-    type: typeof SING_IN,
-    name: string
+interface SingInEmail {
+    type: typeof SING_IN_EMAIL,
+    email: string
 }
 
 interface DelAge {
@@ -16,4 +16,4 @@ interface DelAge {
     age: string
 }
 
-export type LoginActionType = SingIn | DelAge;
+export type LoginActionType = SingInEmail | DelAge;

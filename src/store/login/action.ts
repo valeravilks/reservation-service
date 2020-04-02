@@ -1,7 +1,10 @@
+import {SING_IN_EMAIL} from "./types";
 
-export function singIn2(email:any, pass:any) {
+export function singInAction(email: string, pass: string) {
     return {
-        type: 'INCREMENT_ASYNC'
+        type: SING_IN_EMAIL,
+        email,
+        pass
     }
 }
 
