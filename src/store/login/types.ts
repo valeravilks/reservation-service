@@ -4,6 +4,7 @@ export interface IState {
 }
 
 export const SING_IN_EMAIL = 'SING_IN_EMAIL';
+export const LOGIN_OUT = 'LOGIN_OUT';
 export const SING_UP = 'SING_UP';
 
 interface SingInEmail {
@@ -11,9 +12,8 @@ interface SingInEmail {
     email: string
 }
 
-interface DelAge {
-    type: typeof SING_UP,
-    age: string
+interface LoginOut {
+    type: typeof LOGIN_OUT,
 }
 
-export type LoginActionType = SingInEmail | DelAge;
+export type LoginActionType = SingInEmail | LoginOut;

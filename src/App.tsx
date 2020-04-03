@@ -2,11 +2,28 @@ import React from 'react';
 import './App.css';
 import { connect } from "react-redux";
 import Login from './pages/login';
+import Main from './pages/main';
+import Account from './pages/account';
+import { Switch, Route} from "react-router-dom";
+import {history} from "./store";
+import {ConnectedRouter} from "connected-react-router";
 
 function App(props:any) {
   return (
     <>
-      <Login />
+      <ConnectedRouter history={history}>
+          <Switch>
+            <Route exact path='/'>
+              <Main />
+            </Route>
+            <Route path='/login'>
+              <Login />
+            </Route>
+            <Route path='/account'>
+              <Account/>
+            </Route>
+          </Switch>
+      </ConnectedRouter>
     </>
   );
 }

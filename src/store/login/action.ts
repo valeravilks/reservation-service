@@ -1,4 +1,4 @@
-import {SING_IN_EMAIL} from "./types";
+import {LOGIN_OUT, SING_IN_EMAIL} from "./types";
 
 export function singInAction(email: string, pass: string) {
     return {
@@ -8,3 +8,8 @@ export function singInAction(email: string, pass: string) {
     }
 }
 
+export function singLoginOut() {
+    return {
+        type: LOGIN_OUT,
+    }
+}

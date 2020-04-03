@@ -1,8 +1,9 @@
 import { all } from 'redux-saga/effects';
-import { watchIncrementAsync } from './login/saga';
+import {watchIncrementAsync, watchLoginOut} from './login/saga';
 
 export default function* rootSaga(){
     yield all([
-        watchIncrementAsync()
+        watchIncrementAsync(),
+        watchLoginOut()
     ])
 }

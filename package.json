@@ -13,6 +13,7 @@
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
+    "connected-react-router": "^6.8.0",
     "firebase": "^7.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -44,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.3"
   }
 }
