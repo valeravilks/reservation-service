@@ -5,7 +5,7 @@ export interface IState {
 
 export const SING_IN_EMAIL = 'SING_IN_EMAIL';
 export const LOGIN_OUT = 'LOGIN_OUT';
-export const SING_UP = 'SING_UP';
+export const SING_UP_EMAIL = 'SING_UP_EMAIL';
 
 interface SingInEmail {
     type: typeof SING_IN_EMAIL,
@@ -16,4 +16,9 @@ interface LoginOut {
     type: typeof LOGIN_OUT,
 }
 
-export type LoginActionType = SingInEmail | LoginOut;
+interface SingUpEmail {
+    type: typeof LOGIN_OUT,
+    email: string
+}
+
+export type LoginActionType = SingInEmail | LoginOut | SingUpEmail;

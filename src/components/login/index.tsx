@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {SyntheticEvent} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import TextField from '@material-ui/core/TextField';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
-// import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -14,7 +14,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
 import { singInAction } from "../../store/login/action";
+import {push} from "connected-react-router";
+import { Formik, Form, Field } from 'formik';
+import { TextField } from 'formik-material-ui';
+import * as Yup from 'yup';
 
+
+const validationShema:any = Yup.object().shape({
+    email: Yup.string()
+        .email("Введите корректный email адрес")
+        .required('Данное поле обязательно для заполнения'),
+    password: Yup.string()
+        .min(5, 'Пароль минимум 6 символов')
+        .max(20, 'Пароль максимум 20 симолов')
+        .required('Данное поле обязательно для заполнения')
+});
 
 function Copyright() {
     return (
@@ -56,9 +70,15 @@ const SignIn = (props:any) => {
     const emailRef:any = React.createRef();
     const passRef:any = React.createRef();
 
-    const singIn = (event:any) => {
-        event.preventDefault();
+    const singIn = () => {
+        // event.preventDefault();
         props.singIn(emailRef.current.value, passRef.current.value);
+    };
+
+    const toRegistrationPage = (e:any) => {
+        console.log(e);
+        e.preventDefault();
+        props.push('/registration')
     };
 
     return (
@@ -69,61 +89,81 @@ const SignIn = (props:any) => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in {props.email}
+                    Авторизация
                 </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField
-                        type="email"
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        inputRef={emailRef}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        inputRef={passRef}
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        onClick={(e:any) => singIn(e)}
-                    >
-                        Sign In
-                    </Button>
-                    {/*<Grid container>*/}
-                    {/*    <Grid item xs>*/}
-                    {/*        <Link href="#" variant="body2">*/}
-                    {/*            Forgot password?*/}
-                    {/*        </Link>*/}
-                    {/*    </Grid>*/}
-                    {/*    <Grid item>*/}
-                    {/*        <Link href="#" variant="body2">*/}
-                    {/*            {"Don't have an account? Sign Up"}*/}
-                    {/*        </Link>*/}
-                    {/*    </Grid>*/}
-                    {/*</Grid>*/}
-                </form>
+                <Formik initialValues={{email: '', password: ''}}
+                        onSubmit={(values, {setSubmitting, resetForm}) => {
+                            setSubmitting(true);
+                            singIn();
+                        }}
+                        validationSchema={validationShema}
+                >
+                    {({
+                          values,
+                          handleChange,
+                          handleBlur,
+                          handleSubmit,
+                          isSubmitting
+                    }) => (
+                        <Form className={classes.form} onSubmit={handleSubmit} noValidate>
+                            <Field
+                                component={TextField}
+                                type="email"
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                value={values.email}
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                inputRef={emailRef}
+                            />
+                            <Field
+                                component={TextField}
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Пароль"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                inputRef={passRef}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.password}
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                                disabled={isSubmitting}
+                            >
+                                Войти
+                            </Button>
+                        </Form>
+                    )}
+                </Formik>
+                <Grid container>
+                    <Grid item xs>
+                        <Link href="#" variant="body2">
+                            Забыли пароль?
+                        </Link>
+                    </Grid>
+                    <Grid item xs>
+                        <Link variant="body2"
+                              onClick={toRegistrationPage}>
+                            Нет аккаунта. Зарегистрируйся
+                        </Link>
+                    </Grid>
+                </Grid>
             </div>
             <Box mt={8}>
                 <Copyright />
@@ -140,7 +180,8 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch:any) => ({
     singIn: (email:any, pass:any) => {
         dispatch(singInAction(email, pass))
-    }
+    },
+    push: (value:string) => dispatch(push(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

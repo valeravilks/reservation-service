@@ -10,7 +10,8 @@ function* SingInBase(props:any){
         yield put(push('/account'));
         console.log('SingIn');
     } catch (e) {
-        console.log(e)
+        console.log(e);
+        alert('Нет входа')
     }
 }
 

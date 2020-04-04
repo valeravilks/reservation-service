@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Login from './pages/login';
 import Main from './pages/main';
 import Account from './pages/account';
+import Registration from './pages/registration';
 import { Switch, Route} from "react-router-dom";
 import {history} from "./store";
 import {ConnectedRouter} from "connected-react-router";
@@ -21,6 +22,9 @@ function App(props:any) {
             </Route>
             <Route path='/account'>
               <Account/>
+            </Route>
+            <Route path='/registration'>
+               <Registration/>
             </Route>
           </Switch>
       </ConnectedRouter>

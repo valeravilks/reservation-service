@@ -18,7 +18,7 @@ class Firebase {
     singIn = async (email: string, pass: string) => (
         firebase
             .auth()
-            .createUserWithEmailAndPassword(email, pass)
+            .signInWithEmailAndPassword(email, pass)
     );
 
     singOut = async () => (

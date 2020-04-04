@@ -7,7 +7,9 @@ import {push} from "connected-react-router";
 const MainPage = (props:any) => {
 
     const toLoginPage = () => {
-        props.push('/login')
+        props.push('/login');
+        console.log(push);
+        console.log(props.push);
     };
 
     return (
@@ -24,4 +26,10 @@ const MainPage = (props:any) => {
         </div>
     );
 };
-export default connect(null, {push})(MainPage);
+
+const mapDispatchToProps = (dispatch:any) => ({
+    push: (value:string) => dispatch(push(value))
+});
+
+
+export default connect(null, mapDispatchToProps)(MainPage);
