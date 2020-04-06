@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/reservation-service/static/css/main.5f361e03.chunk.css",
-    "main.js": "/reservation-service/static/js/main.2325d740.chunk.js",
-    "main.js.map": "/reservation-service/static/js/main.2325d740.chunk.js.map",
+    "main.js": "/reservation-service/static/js/main.419b64f2.chunk.js",
+    "main.js.map": "/reservation-service/static/js/main.419b64f2.chunk.js.map",
     "runtime-main.js": "/reservation-service/static/js/runtime-main.54f45e2d.js",
     "runtime-main.js.map": "/reservation-service/static/js/runtime-main.54f45e2d.js.map",
-    "static/js/2.fb734e11.chunk.js": "/reservation-service/static/js/2.fb734e11.chunk.js",
-    "static/js/2.fb734e11.chunk.js.map": "/reservation-service/static/js/2.fb734e11.chunk.js.map",
+    "static/js/2.a0ee6371.chunk.js": "/reservation-service/static/js/2.a0ee6371.chunk.js",
+    "static/js/2.a0ee6371.chunk.js.map": "/reservation-service/static/js/2.a0ee6371.chunk.js.map",
     "index.html": "/reservation-service/index.html",
-    "precache-manifest.b2623bcb92cf5f5ea8816a170d3dab87.js": "/reservation-service/precache-manifest.b2623bcb92cf5f5ea8816a170d3dab87.js",
+    "precache-manifest.3856ce53d2939eb63ba4058b845c41b6.js": "/reservation-service/precache-manifest.3856ce53d2939eb63ba4058b845c41b6.js",
     "service-worker.js": "/reservation-service/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/reservation-service/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.fb734e11.chunk.js.LICENSE.txt": "/reservation-service/static/js/2.fb734e11.chunk.js.LICENSE.txt"
+    "static/js/2.a0ee6371.chunk.js.LICENSE.txt": "/reservation-service/static/js/2.a0ee6371.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.54f45e2d.js",
-    "static/js/2.fb734e11.chunk.js",
+    "static/js/2.a0ee6371.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.2325d740.chunk.js"
+    "static/js/main.419b64f2.chunk.js"
   ]
 }
