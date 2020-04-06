@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import TextField from '@material-ui/core/TextField';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -18,7 +15,6 @@ import {push} from "connected-react-router";
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
-
 
 const validationShema:any = Yup.object().shape({
     email: Yup.string()
@@ -67,24 +63,11 @@ const SignIn = (props:any) => {
 
     const classes = useStyles();
 
-    const emailRef:any = React.createRef();
-    const passRef:any = React.createRef();
-
-    const singIn = () => {
-        // event.preventDefault();
-        props.singIn(emailRef.current.value, passRef.current.value);
-    };
-
     const toRegistrationPage = (e:any) => {
         console.log(e);
         e.preventDefault();
         props.push('/registration')
     };
-
-    useEffect(()=>{
-            console.log('update')
-    });
-
 
     return (
         <Container component="main" maxWidth="xs">
@@ -108,8 +91,7 @@ const SignIn = (props:any) => {
                           values,
                           handleChange,
                           handleBlur,
-                          handleSubmit,
-                          isSubmitting
+                          handleSubmit
                     }) => (
                         <Form className={classes.form} onSubmit={handleSubmit} noValidate >
                             <Field
@@ -126,7 +108,6 @@ const SignIn = (props:any) => {
                                 autoComplete="email"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                inputRef={emailRef}
                                 disabled={props.formDisabled}
                             />
                             <Field
@@ -140,7 +121,6 @@ const SignIn = (props:any) => {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                inputRef={passRef}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
