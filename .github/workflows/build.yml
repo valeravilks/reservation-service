@@ -19,7 +19,7 @@ jobs:
       run: npm install
     - name: Deploy to GH Pages
       run: |
-        git config --global user.email "valeravilks@gmail.com"
-        git config --global user.name "valeravilks"
-        git remote set-url origin https://a9609c9afc99d8d2f6f3258e51a019ab0a5c6f9e@github.com/valeravilks/reservation_service.git
+        git config --global user.email ${{secrets.GITHUB_EMAIL}}
+        git config --global user.name ${{secrets.GITHUB_USERNAME}}
+        git remote set-url origin https://${{secrets.GITHUB_PERSONAL_TOKEN}}@github.com/${{secrets.GITHUB_USERNAME}}/reservation_service.git
         npm run deploy
