@@ -11,6 +11,7 @@ function* SingInBase(props:any){
         yield put(notErrorAuthAction());
         yield put(push('/account'));
     } catch (e) {
+        // TODO Added handling error
         yield put(errorAuthAction());
     }
     yield put(authProcessAction(false));
