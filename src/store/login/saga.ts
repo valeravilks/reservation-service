@@ -2,16 +2,16 @@ import { takeEvery, put } from 'redux-saga/effects';
 import Firebase from "../firebase";
 import {LOGIN_OUT, SING_IN_EMAIL} from "./types";
 import { push } from 'connected-react-router'
+import { errorAuthAction, notErrorAuthAction } from "./action";
 
 function* SingInBase(props:any){
     yield put({type: "SING_IN", name: '123'});
     try{
         yield Firebase.singIn(props.email, props.pass);
+        yield put(notErrorAuthAction());
         yield put(push('/account'));
-        console.log('SingIn');
     } catch (e) {
-        console.log(e);
-        alert('Нет входа')
+        yield put(errorAuthAction());
     }
 }
 

@@ -1,4 +1,4 @@
-import React, {SyntheticEvent} from 'react';
+import React, { useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -81,6 +81,11 @@ const SignIn = (props:any) => {
         props.push('/registration')
     };
 
+    useEffect(()=>{
+            console.log('update')
+    });
+
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -91,10 +96,11 @@ const SignIn = (props:any) => {
                 <Typography component="h1" variant="h5">
                     Авторизация
                 </Typography>
+                {props.errorAuth ? 'Неправильный логин или пароль' : ''}
                 <Formik initialValues={{email: '', password: ''}}
                         onSubmit={(values, {setSubmitting, resetForm}) => {
-                            setSubmitting(true);
-                            singIn();
+                            props.singIn(values.email, values.password);
+                            setSubmitting(false);
                         }}
                         validationSchema={validationShema}
                 >
@@ -173,7 +179,8 @@ const SignIn = (props:any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-   email: state.login.email
+   email: state.login.email,
+   errorAuth: state.login.errorAuth
 });
 
 

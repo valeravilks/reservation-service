@@ -1,11 +1,15 @@
 export interface IState {
     email: string,
+    isAuth: boolean,
+    errorAuth: boolean,
     age: number
 }
 
 export const SING_IN_EMAIL = 'SING_IN_EMAIL';
 export const LOGIN_OUT = 'LOGIN_OUT';
 export const SING_UP_EMAIL = 'SING_UP_EMAIL';
+export const ERROR_AUTH = 'ERROR_AUTH';
+export const NOT_ERROR_AUTH = 'NOT_ERROR_AUTH';
 
 interface SingInEmail {
     type: typeof SING_IN_EMAIL,
@@ -21,4 +25,12 @@ interface SingUpEmail {
     email: string
 }
 
-export type LoginActionType = SingInEmail | LoginOut | SingUpEmail;
+interface ErrorAuth {
+    type: typeof ERROR_AUTH,
+}
+
+interface NotErrorAuth {
+    type: typeof NOT_ERROR_AUTH,
+}
+
+export type LoginActionType = SingInEmail | LoginOut | SingUpEmail | ErrorAuth | NotErrorAuth;

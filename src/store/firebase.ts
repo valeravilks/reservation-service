@@ -25,7 +25,13 @@ class Firebase {
         firebase
             .auth()
             .signOut()
-    )
+    );
+
+    inAuth = (): boolean => {
+        let user = firebase.auth().currentUser;
+        console.log(Boolean(user));
+        return Boolean(user)
+    }
 }
 
 

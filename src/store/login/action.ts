@@ -1,4 +1,4 @@
-import {LOGIN_OUT, SING_IN_EMAIL, SING_UP_EMAIL} from "./types";
+import {ERROR_AUTH, LOGIN_OUT, SING_IN_EMAIL, SING_UP_EMAIL, NOT_ERROR_AUTH} from "./types";
 
 export function singInAction(email: string, pass: string) {
     return {
@@ -19,5 +19,17 @@ export function singUpAction(email: string, pass: string) {
         type: SING_UP_EMAIL,
         email,
         pass
+    }
+}
+
+export function errorAuthAction() {
+    return {
+        type: ERROR_AUTH,
+    }
+}
+
+export function notErrorAuthAction() {
+    return {
+        type: NOT_ERROR_AUTH,
     }
 }
