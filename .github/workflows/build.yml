@@ -1,23 +1,25 @@
-name: Node.js_CI
-
-on: [push]
-
+name: MasterDeployCI
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
-
+        node-version: [10.x]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run build --if-present
-      env:
-        CI: true
+    - name: Install Packages
+      run: npm install
+    - name: Deploy to GH Pages
+      run: |
+        git config --global user.email "valeravilks@gmail.com"
+        git config --global user.name "valeravilks"
+        git remote set-url origin https://a9609c9afc99d8d2f6f3258e51a019ab0a5c6f9e@github.com/valeravilks/reservation_service.git
+        npm run deploy
