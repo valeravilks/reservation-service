@@ -2,10 +2,10 @@ import { takeEvery, put } from 'redux-saga/effects';
 import Firebase from "../firebase";
 import {LOGIN_OUT, SING_IN_EMAIL} from "./types";
 import { push } from 'connected-react-router'
-import { errorAuthAction, notErrorAuthAction } from "./action";
+import { errorAuthAction, notErrorAuthAction, authProcessAction } from "./action";
 
 function* SingInBase(props:any){
-    yield put({type: "SING_IN", name: '123'});
+    yield put(authProcessAction(true));
     try{
         yield Firebase.singIn(props.email, props.pass);
         yield put(notErrorAuthAction());
@@ -13,6 +13,7 @@ function* SingInBase(props:any){
     } catch (e) {
         yield put(errorAuthAction());
     }
+    yield put(authProcessAction(false));
 }
 
 export function* watchIncrementAsync() {

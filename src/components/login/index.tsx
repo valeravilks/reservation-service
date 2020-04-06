@@ -111,7 +111,7 @@ const SignIn = (props:any) => {
                           handleSubmit,
                           isSubmitting
                     }) => (
-                        <Form className={classes.form} onSubmit={handleSubmit} noValidate>
+                        <Form className={classes.form} onSubmit={handleSubmit} noValidate >
                             <Field
                                 component={TextField}
                                 type="email"
@@ -127,6 +127,7 @@ const SignIn = (props:any) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 inputRef={emailRef}
+                                disabled={props.formDisabled}
                             />
                             <Field
                                 component={TextField}
@@ -143,6 +144,7 @@ const SignIn = (props:any) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
+                                disabled={props.formDisabled}
                             />
                             <Button
                                 type="submit"
@@ -150,7 +152,7 @@ const SignIn = (props:any) => {
                                 variant="contained"
                                 color="primary"
                                 className={classes.submit}
-                                disabled={isSubmitting}
+                                disabled={props.formDisabled}
                             >
                                 Войти
                             </Button>
@@ -179,8 +181,9 @@ const SignIn = (props:any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-   email: state.login.email,
-   errorAuth: state.login.errorAuth
+    email: state.login.email,
+    errorAuth: state.login.errorAuth,
+    formDisabled: state.login.authProcess
 });
 
 
