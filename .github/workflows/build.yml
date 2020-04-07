@@ -27,6 +27,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@master
         env:
           ftp-server :  ${{secrets.FTP_SERVER2}}
-          ftp-username :  ${{secrets.FTP_PASSWORD}}
-          ftp-password :  ${{secrets.FTP_USERNAME}}
+          ftp-password :  ${{secrets.FTP_PASSWORD}}
+          ftp-username :  ${{secrets.FTP_USERNAME}}
           local-dir : build
