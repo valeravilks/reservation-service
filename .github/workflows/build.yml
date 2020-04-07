@@ -26,7 +26,7 @@ jobs:
       - name: FTP-Deploy
         uses: SamKirkland/FTP-Deploy-Action@master
         env:
-          FTP_SERVER :  ${{ secrets.FTP_SERVER }}
-          FTP_PASSWORD :  ${{ secrets.FTP_PASSWORD }}
-          FTP_USERNAME :  ${{ secrets.FTP_USERNAME }}
+          FTP_SERVER :  ftp://${{secrets.FTP_SERVER}}/
+          FTP_PASSWORD :  ${{secrets.FTP_PASSWORD}}
+          FTP_USERNAME :  ${{secrets.FTP_USERNAME}}@${{secrets.FTP_SERVER}}
           LOCAL_DIR : build
