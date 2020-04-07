@@ -23,13 +23,13 @@ jobs:
         run: ls
 
       - uses: actions/checkout@v2
-                - name: Upload ftp
-                uses: sebastianpopp/ftp-action@releases/v2
-                with:
-                  host: 213.226.126.192
-                  user: admin_rservice
-                  password: ${{ secrets.FTP_PASSWORD }}
-                  localDir: "build"
+      - name: Upload ftp
+        uses: sebastianpopp/ftp-action@releases/v2
+        with:
+          host: 213.226.126.192
+          user: admin_rservice
+          password: ${{ secrets.FTP_PASSWORD }}
+          localDir: "build"
 
 #      - name: FTP-Deploy-Action
 #        uses: SamKirkland/FTP-Deploy-Action@3.0.0
