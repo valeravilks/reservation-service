@@ -1,25 +1,32 @@
-name: MasterDeployCI
-on:
-  push:
-    branches:
-      - master
+name: Build and Publish React Website
+
+on: [push]
+
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install Packages
-      run: npm install
-    - name: Deploy to GH Pages
-      run: |
-        git config --global user.email ${{secrets.EMAIL}}
-        git config --global user.name ${{secrets.USERNAME}}
-        git remote set-url origin https://${{secrets.A_T}}@github.com/${{secrets.USERNAME}}/reservation_service.git
-        npm run deploy
+      - uses: actions/checkout@master
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Build Project
+        run: |
+          npm install
+          npm run build --if-present
+
+      - name: List output files
+        run: ls
+
+      - name: FTP-Deploy
+        uses: SamKirkland/FTP-Deploy-Action@master
+        env:
+          FTP_SERVER :  ${{ secrets.FTP_SERVER }}
+          FTP_PASSWORD :  ${{ secrets.FTP_PASSWORD }}
+          FTP_USERNAME :  ${{ secrets.FTP_USERNAME }}
+          LOCAL_DIR : build
