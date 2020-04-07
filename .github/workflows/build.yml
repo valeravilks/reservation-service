@@ -1,32 +1,16 @@
-name: Build and Publish React Website
-
-on: [push]
-
+on: push
+name: Publish Website
 jobs:
-  build:
-
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@master
-
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
-
-      - name: Build Project
-        run: |
-          npm install
-          npm run build --if-present
-
-      - name: List output files
-        run: ls
-
-      - name: FTP-Deploy
-        uses: SamKirkland/FTP-Deploy-Action@master
-        env:
-          ftp-server :  ${{secrets.FTP_SERVER2}}
-          ftp-password :  ${{secrets.FTP_PASSWORD}}
-          ftp-username :  ${{secrets.FTP_USERNAME}}
-          local-dir : /build
+          fetch-depth: 2
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.0.0
+        with:
+          ftp-server: 213.226.126.192
+          ftp-username: admin_rservice
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
