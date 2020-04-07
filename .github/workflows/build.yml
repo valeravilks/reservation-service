@@ -28,4 +28,4 @@ jobs:
           ftp-server: 213.226.126.192
           ftp-username: admin_rservice
           ftp-password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: build
+          local-dir: ./build
