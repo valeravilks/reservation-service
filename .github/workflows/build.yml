@@ -22,10 +22,19 @@ jobs:
       - name: List output files
         run: ls
 
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@3.0.0
-        with:
-          ftp-server: 213.226.126.192
-          ftp-username: admin_rservice
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build/
+      - uses: actions/checkout@v2
+                - name: Upload ftp
+                uses: sebastianpopp/ftp-action@releases/v2
+                with:
+                  host: 213.226.126.192
+                  user: admin_rservice
+                  password: ${{ secrets.FTP_PASSWORD }}
+                  localDir: "build"
+
+#      - name: FTP-Deploy-Action
+#        uses: SamKirkland/FTP-Deploy-Action@3.0.0
+#        with:
+#          ftp-server: 213.226.126.192
+#          ftp-username: admin_rservice
+#          ftp-password: ${{ secrets.FTP_PASSWORD }}
+#          local-dir: ./build/
