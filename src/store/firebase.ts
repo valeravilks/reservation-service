@@ -11,8 +11,22 @@ const firebaseConfig = {
 };
 
 class Firebase {
+    private auth: firebase.auth.Auth;
+    public user: any;
+    private app: firebase.app.App;
+    public init: boolean;
+
     constructor() {
-        firebase.initializeApp(firebaseConfig);
+        this.app = firebase.initializeApp(firebaseConfig);
+        this.auth = this.app.auth();
+        console.log(`Инициализация firebase ${this.auth.currentUser}`);
+        this.user = firebase.auth().currentUser;
+        this.init = false;
+
+        this.auth.onAuthStateChanged((user) =>  {
+            this.user = user;
+            this.init = true;
+        });
     }
 
     singIn = async (email: string, pass: string) => (
@@ -28,8 +42,8 @@ class Firebase {
     );
 
     inAuth = (): boolean => {
-        let user = firebase.auth().currentUser;
-        console.log(Boolean(user));
+        let user = this.auth.currentUser;
+        console.log(`Есть ли логин пользователя? ${Boolean(user)}`);
         return Boolean(user)
     }
 }
