@@ -1,12 +1,14 @@
-import {AUTH_PROCESS, ERROR_AUTH, IS_AUTH, IState, LoginActionType,} from './types';
-
-import Firebase from '../firebase';
+import {
+    AUTH_PROCESS,
+    ERROR_AUTH, IS_AUTH,
+    IState,
+    LoginActionType,
+} from './types';
 
 const initialState: IState = {
     isAuth: false,
     errorAuth: false,
     authProcess: false,
-    user: null
 };
 
 export default function(state:IState = initialState, action: LoginActionType): IState{

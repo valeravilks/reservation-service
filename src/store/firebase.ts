@@ -12,19 +12,16 @@ const firebaseConfig = {
 
 class Firebase {
     private auth: firebase.auth.Auth;
-    public user: any;
     private app: firebase.app.App;
 
     constructor() {
         this.app = firebase.initializeApp(firebaseConfig);
         this.auth = this.app.auth();
-        this.user = null;
     }
 
-    initial = async () => {
+    currentUser = async () => {
         return new Promise(((resolve, reject) => {
             this.auth.onAuthStateChanged((user) =>  {
-                this.user = user;
                 resolve(user);
             });
         }));
@@ -41,13 +38,6 @@ class Firebase {
             .auth()
             .signOut()
     );
-
-    inAuth = (): boolean => {
-        let user = this.auth.currentUser;
-        console.log(`Есть ли логин пользователя? ${Boolean(user)}`);
-        return Boolean(user)
-    }
 }
-
 
 export default new Firebase();

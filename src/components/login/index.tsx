@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
-import { singInAction } from "../../store/login/action";
+import {checkIsAuth, singInAction} from "../../store/login/action";
 import {push} from "connected-react-router";
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = (props:any) => {
 
     useEffect(()=>{
-        props.checkIsAuth();
+        props.checkIsCurrentUser();
     });
 
     const classes = useStyles();
@@ -175,7 +175,8 @@ const mapDispatchToProps = (dispatch:any) => ({
     singIn: (email:any, pass:any) => {
         dispatch(singInAction(email, pass))
     },
-    push: (value:string) => dispatch(push(value))
+    push: (value:string) => dispatch(push(value)),
+    checkIsCurrentUser: () => dispatch(checkIsAuth())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

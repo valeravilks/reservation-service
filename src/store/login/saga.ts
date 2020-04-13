@@ -42,11 +42,8 @@ export function* watchCheckAuth() {
 
 function* baseCheckAuth(props:any){
     try {
-        const isAuths = yield Firebase.inAuth();
-        yield put(isAuth(isAuths));
-        if(isAuths){
-            yield put(push('/account'))
-        }
+        const user = yield Firebase.currentUser();
+        yield put(isAuth(Boolean(user)));
     } catch (e) {
         console.log(e)
     }
@@ -58,7 +55,7 @@ export function* watchInitAuth() {
 
 function* baseInitAuth(){
     try {
-        const user = yield Firebase.initial();
+        const user = yield Firebase.currentUser();
         yield put(isAuth(Boolean(user)));
 
         if(Boolean(user)){

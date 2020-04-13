@@ -2,7 +2,6 @@ export interface IState {
     isAuth: boolean,
     errorAuth: boolean,
     authProcess: boolean,
-    user: any
 }
 
 export const SING_IN_EMAIL = 'SING_IN_EMAIL';
@@ -12,7 +11,6 @@ export const ERROR_AUTH = 'ERROR_AUTH';
 export const AUTH_PROCESS = 'AUTH_PROCESS';
 export const IS_AUTH = 'IS_AUTH';
 export const CHECK_AUTH = 'CHECK_AUTH';
-export const INIT_AUTH = 'INIT_AUTH';
 export const CHECK_IN_AUTH = 'CHECK_IN_AUTH';
 
 interface ISingInEmail {

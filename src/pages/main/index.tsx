@@ -4,23 +4,18 @@ import {connect} from "react-redux";
 import {push} from "connected-react-router";
 import {checkIsAuth} from '../../store/login/action';
 
-import Firebase from '../../store/firebase';
-
 const MainPage = (props:any) => {
 
+    /**
+     * If the current user is in the system, then go to the account page
+     */
     useEffect(()=>{
-        props.checkIsAuth();
+        props.checkIsCurrentUser();
     });
 
     const toLoginPage = () => {
         props.push('/login');
     };
-
-    const checkAuth = () => {
-        console.log(Firebase.user);
-    };
-
-
 
     return (
         <div>
@@ -33,14 +28,6 @@ const MainPage = (props:any) => {
             >
                 Логин
             </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                type="button"
-                onClick={checkAuth}
-            >
-                Проверка аккаунта
-            </Button>
         </div>
     );
 };
@@ -50,7 +37,7 @@ const mapStateToProps = (state: any) => ({
 });
 const mapDispatchToProps = (dispatch:any) => ({
     push: (value:string) => dispatch(push(value)),
-    checkIsAuth: () => dispatch(checkIsAuth())
+    checkIsCurrentUser: () => dispatch(checkIsAuth())
 });
 
 
