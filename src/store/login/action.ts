@@ -4,7 +4,7 @@ import {
     SING_IN_EMAIL,
     SING_UP_EMAIL,
     AUTH_PROCESS,
-    IS_AUTH, CHECK_AUTH
+    IS_AUTH, CHECK_AUTH, CHECK_IN_AUTH
 } from "./types";
 
 export function singInAction(email: string, pass: string) {
@@ -53,5 +53,11 @@ export function isAuth(value: boolean) {
 export function checkAuth() {
     return {
         type: CHECK_AUTH
+    }
+}
+
+export function checkIsAuth() {
+    return {
+        type: CHECK_IN_AUTH
     }
 }

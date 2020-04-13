@@ -14,20 +14,21 @@ class Firebase {
     private auth: firebase.auth.Auth;
     public user: any;
     private app: firebase.app.App;
-    public init: boolean;
 
     constructor() {
         this.app = firebase.initializeApp(firebaseConfig);
         this.auth = this.app.auth();
-        console.log(`Инициализация firebase ${this.auth.currentUser}`);
-        this.user = firebase.auth().currentUser;
-        this.init = false;
-
-        this.auth.onAuthStateChanged((user) =>  {
-            this.user = user;
-            this.init = true;
-        });
+        this.user = null;
     }
+
+    initial = async () => {
+        return new Promise(((resolve, reject) => {
+            this.auth.onAuthStateChanged((user) =>  {
+                this.user = user;
+                resolve(user);
+            });
+        }));
+    };
 
     singIn = async (email: string, pass: string) => (
         firebase

@@ -2,17 +2,14 @@ import React, {useEffect} from 'react';
 import {Button} from "@material-ui/core";
 import {connect} from "react-redux";
 import {push} from "connected-react-router";
-import {checkAuth} from '../../store/login/action';
+import {checkIsAuth} from '../../store/login/action';
 
 import Firebase from '../../store/firebase';
 
 const MainPage = (props:any) => {
 
     useEffect(()=>{
-        console.log(Firebase.user);
-       if(Firebase.user){
-           props.push('/account')
-       }
+        props.checkIsAuth();
     });
 
     const toLoginPage = () => {
@@ -53,7 +50,7 @@ const mapStateToProps = (state: any) => ({
 });
 const mapDispatchToProps = (dispatch:any) => ({
     push: (value:string) => dispatch(push(value)),
-    checkAuth: () => dispatch(checkAuth())
+    checkIsAuth: () => dispatch(checkIsAuth())
 });
 
 

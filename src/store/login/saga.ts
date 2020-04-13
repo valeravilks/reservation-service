@@ -1,6 +1,6 @@
 import { takeEvery, put } from 'redux-saga/effects';
 import Firebase from "../firebase";
-import {CHECK_AUTH, LOGIN_OUT, SING_IN_EMAIL} from "./types";
+import {CHECK_AUTH, LOGIN_OUT, SING_IN_EMAIL, CHECK_IN_AUTH} from "./types";
 import { push } from 'connected-react-router'
 import { errorAuthAction, authProcessAction, isAuth } from "./action";
 
@@ -45,6 +45,23 @@ function* baseCheckAuth(props:any){
         const isAuths = yield Firebase.inAuth();
         yield put(isAuth(isAuths));
         if(isAuths){
+            yield put(push('/account'))
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export function* watchInitAuth() {
+    yield takeEvery(CHECK_IN_AUTH, baseInitAuth);
+}
+
+function* baseInitAuth(){
+    try {
+        const user = yield Firebase.initial();
+        yield put(isAuth(Boolean(user)));
+
+        if(Boolean(user)){
             yield put(push('/account'))
         }
     } catch (e) {
